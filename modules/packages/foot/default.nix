@@ -15,7 +15,7 @@
         inherit pkgs;
         env."FONTCONFIG_FILE" = "${font-config}";
         settings = {
-          main.font = "Iosevka:size=18";
+          main.font = "Iosevka:size=12";
         };
       };
   };
