@@ -7,8 +7,9 @@
   perSystem = {pkgs, ...}: {
     packages.foot = let
       iosevka = pkgs.iosevka;
+      symbols = pkgs.nerd-fonts.symbols-only;
       font-config = pkgs.makeFontsConf {
-        fontDirectories = [iosevka];
+        fontDirectories = [iosevka symbols];
       };
     in
       inputs.wrappers.wrappers.foot.wrap {
