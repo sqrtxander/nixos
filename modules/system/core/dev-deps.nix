@@ -9,6 +9,7 @@
       nodejs
       perl
       typst
+      gcc
 
       wget
       curl
