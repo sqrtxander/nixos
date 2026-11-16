@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ ... }: {
   flake.nixosModules.devDeps = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       rustup
@@ -11,6 +11,9 @@
       typst
       gcc
 
+      prek
+
+      ripgrep
       wget
       curl
       jq
