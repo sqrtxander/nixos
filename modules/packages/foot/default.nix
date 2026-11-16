@@ -1,4 +1,8 @@
-{ moduleWithSystem, inputs, ... }: {
+{
+  moduleWithSystem,
+  inputs,
+  ...
+}: {
   flake.nixosModules.foot = moduleWithSystem ({self', ...}: {
     environment.systemPackages = with self'.packages; [
       foot
@@ -21,4 +25,3 @@
       };
   };
 }
-

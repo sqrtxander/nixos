@@ -1,16 +1,29 @@
-{ inputs, moduleWithSystem, ...}: {
-  flake.nixosModules.niri = moduleWithSystem ({self', pkgs, ...}: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
+  flake.nixosModules.niri = moduleWithSystem ({
+    self',
+    pkgs,
+    ...
+  }: {
     programs.niri = {
       enable = true;
       package = self'.packages.niri;
     };
     systemd.user.services.niri.enableDefaultPath = false;
   });
-  perSystem = { pkgs, lib, self', ...}: let
+  perSystem = {
+    pkgs,
+    lib,
+    self',
+    ...
+  }: let
     niri-wrapped = inputs.wrappers.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
-        prefer-no-csd = _: { };
+        prefer-no-csd = _: {};
 
         spawn-at-startup = [
           (lib.getExe self'.packages.noctalia)
@@ -19,13 +32,13 @@
         input = {
           keyboard = {
             xkb.options = "compose:ralt";
-            numlock =  _: { };
+            numlock = _: {};
           };
           touchpad = {
-            tap = _: { };
-            natural-scroll =  _: { };
+            tap = _: {};
+            natural-scroll = _: {};
           };
-          warp-mouse-to-focus =  _: { };
+          warp-mouse-to-focus = _: {};
         };
         layout = {
           gaps = 5;
@@ -35,7 +48,7 @@
         binds = {
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
-          "Mod+Q".close-window = _: { };
+          "Mod+Q".close-window = _: {};
           "Mod+R".spawn-sh = "${lib.getExe self'.packages.noctalia} msg panel-toggle launcher";
           "Mod+O".toggle-overview = _: {};
 
@@ -83,8 +96,8 @@
           "Mod+Shift+Minus".set-window-height = "-10%";
           "Mod+Shift+Equal".set-window-height = "+10%";
 
-          "Mod+V".toggle-window-floating = _:{};
-          "Mod+Shift+V".switch-focus-between-floating-and-tiling = _:{};
+          "Mod+V".toggle-window-floating = _: {};
+          "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: {};
 
           "Mod+D".switch-preset-column-width = _: {};
           "Mod+Shift+D".switch-preset-window-height = _: {};
@@ -103,20 +116,20 @@
           "XF86AudioMicMute".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
 
           "XF86MonBrightnessUp".spawn-sh = "brightnessctl --class=backlight set +10%";
-          "XF86MonBrightnessDown".spawn-sh =  "brightnessctl --class=backlight set 10%-";
+          "XF86MonBrightnessDown".spawn-sh = "brightnessctl --class=backlight set 10%-";
         };
       };
     };
-    in {
-      packages.niri = pkgs.symlinkJoin {
-        name = "niri-wrapped";
-        paths = [ niri-wrapped ];
-        passthru = (niri-wrapped.passthru or { }) // {unwrapped = niri-wrapped; };
-        postBuild = ''
-          rm $out/bin/niri-session
-          cp -p ${niri-wrapped}/bin/niri-session $out/bin/niri-session
-          patch $out/bin/niri-session < ${./systemd-no-import-env.patch}
-        '';
-      };
+  in {
+    packages.niri = pkgs.symlinkJoin {
+      name = "niri-wrapped";
+      paths = [niri-wrapped];
+      passthru = (niri-wrapped.passthru or {}) // {unwrapped = niri-wrapped;};
+      postBuild = ''
+        rm $out/bin/niri-session
+        cp -p ${niri-wrapped}/bin/niri-session $out/bin/niri-session
+        patch $out/bin/niri-session < ${./systemd-no-import-env.patch}
+      '';
     };
+  };
 }

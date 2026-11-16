@@ -1,5 +1,13 @@
-{self, moduleWithSystem, ...}: {
-  flake.nixosModules.starbattleConfiguration = moduleWithSystem ({self', pkgs, ...}: {
+{
+  self,
+  moduleWithSystem,
+  ...
+}: {
+  flake.nixosModules.starbattleConfiguration = moduleWithSystem ({
+    self',
+    pkgs,
+    ...
+  }: {
     imports = with self.nixosModules; [
       core
       networking
@@ -11,7 +19,7 @@
       neovim
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
 
     networking.hostName = "starbattle";
 

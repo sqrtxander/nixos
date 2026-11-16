@@ -1,18 +1,26 @@
-{ inputs, moduleWithSystem, ...}: {
-  flake.nixosModules.git = moduleWithSystem ({self', pkgs, ...}: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
+  flake.nixosModules.git = moduleWithSystem ({
+    self',
+    pkgs,
+    ...
+  }: {
     programs.git = {
       enable = true;
       package = self'.packages.git;
     };
   });
-  perSystem = { pkgs, ...}: {
+  perSystem = {pkgs, ...}: {
     packages.git = inputs.wrappers.wrappers.git.wrap {
       inherit pkgs;
       settings = {
         user = {
-	  name = "Xander James";
-	  email = "xanderjames128@gmail.com";
-	};
+          name = "Xander James";
+          email = "xanderjames128@gmail.com";
+        };
         init.defaultBranch = "main";
         pull.rebase = true;
       };

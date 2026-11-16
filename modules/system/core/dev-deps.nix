@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.nixosModules.devDeps = { pkgs, ... }: {
+{...}: {
+  flake.nixosModules.devDeps = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       rustup
       go
@@ -11,6 +11,7 @@
       typst
       gcc
 
+      alejandra
       prek
 
       ripgrep
