@@ -40,7 +40,7 @@
       runtimePkgs = with pkgs; [zoxide];
       zshAliases = {
         ls = "ls --color";
-        ll = "ls -alf";
+        ll = "ls -alF";
         aac = "NVIM_APPNAME=\"aac.nvim\" ${lib.getExe pkgs.neovim}";
       };
       zshrc.content = ''
