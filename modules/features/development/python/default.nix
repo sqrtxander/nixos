@@ -1,8 +1,7 @@
 {...}: {
-  flake.nixosModules.development-python = {pkgs, ...}: {
+  flake.nixosModules.development-python = {lib, pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       python315
-      python312
     ];
   };
 }
