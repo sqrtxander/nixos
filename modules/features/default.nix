@@ -5,6 +5,7 @@
       foot
       git
       niri
+      noctalia
       zsh
     ];
   in {

@@ -5,6 +5,7 @@
       bootloader
       imports
       locale
+      services
     ];
   in {
     imports = modules;
