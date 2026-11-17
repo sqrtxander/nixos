@@ -5,7 +5,6 @@
       bootloader
       imports
       locale
-      devDeps
     ];
   in {
     imports = modules;

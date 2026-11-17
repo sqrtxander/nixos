@@ -13,6 +13,7 @@
       networking
       niri
       git
+      development
     ];
 
     environment.systemPackages = with pkgs; [
