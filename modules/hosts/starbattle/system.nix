@@ -14,6 +14,7 @@
       niri
       git
       development
+      zsh
     ];
 
     environment.systemPackages = with pkgs; [
