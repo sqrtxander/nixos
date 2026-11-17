@@ -20,13 +20,14 @@
     self',
     ...
   }: let
+    noctalia = lib.getExe self'.packages.noctalia;
     niri-wrapped = inputs.wrappers.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
         prefer-no-csd = _: {};
 
         spawn-at-startup = [
-          (lib.getExe self'.packages.noctalia)
+          noctalia
         ];
 
         input = {
@@ -49,8 +50,9 @@
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
           "Mod+Q".close-window = _: {};
-          "Mod+R".spawn-sh = "${lib.getExe self'.packages.noctalia} msg panel-toggle launcher";
+          "Mod+R".spawn-sh = "${noctalia} msg panel-toggle launcher";
           "Mod+O".toggle-overview = _: {};
+          "Mod+X".spawn-sh = "${noctalia} msg session lock";
 
           "Mod+H".focus-column-left = _: {};
           "Mod+J".focus-window-down = _: {};
@@ -106,17 +108,17 @@
           "Mod+Shift+F".fullscreen-window = _: {};
           "Mod+C".center-column = _: {};
 
-          "Print".screenshot = _: {};
-          "Ctrl+Print".screenshot-screen = _: {};
-          "Alt+Print".screenshot-window = _: {};
+          "Print".spawn-sh = "${noctalia} msg screenshot-region";
+          "Ctrl+Print".spawn-sh = "${noctalia} msg screenshot-fullscreen";
+          "Alt+Print".spawn-sh = "${noctalia} msg screenshot-window";
 
-          "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
-          "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
-          "XF86AudioMute".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          "XF86AudioMicMute".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          "XF86AudioRaiseVolume".spawn-sh = "${noctalia} msg volume-up 0.05";
+          "XF86AudioLowerVolume".spawn-sh = "${noctalia} msg volume-down 0.05";
+          "XF86AudioMute".spawn-sh = "${noctalia} msg volume-mute";
+          "XF86AudioMicMute".spawn-sh = "${noctalia} msg mic-mute";
 
-          "XF86MonBrightnessUp".spawn-sh = "brightnessctl --class=backlight set +10%";
-          "XF86MonBrightnessDown".spawn-sh = "brightnessctl --class=backlight set 10%-";
+          "XF86MonBrightnessUp".spawn-sh = "${noctalia} msg brightness-up 0.05";
+          "XF86MonBrightnessDown".spawn-sh = "${noctalia} msg brightness-down 0.05";
         };
       };
     };
