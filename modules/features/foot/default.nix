@@ -18,9 +18,12 @@
     in
       inputs.wrappers.wrappers.foot.wrap {
         inherit pkgs;
-        env."FONTCONFIG_FILE" = "${font-config}";
+        env.FONTCONFIG_FILE = "${font-config}";
         settings = {
-          main.font = "Iosevka:size=12";
+          main = {
+            font = "Iosevka:size=12";
+            include = "${inputs.cyberdream.extras.foot}/cyberdream.ini";
+          };
         };
       };
   };

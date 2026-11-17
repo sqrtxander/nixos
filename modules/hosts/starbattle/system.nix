@@ -11,10 +11,7 @@
     imports = with self.nixosModules; [
       core
       networking
-      niri
-      git
-      development
-      zsh
+      features
     ];
 
     environment.systemPackages = with pkgs; [

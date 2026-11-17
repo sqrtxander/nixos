@@ -9,7 +9,9 @@
 
     wrappers.url = "github:nix-community/nix-wrapper-modules";
 
-    cyberdream.url = "github:scottmckendry/cyberdream.nvim";
+    # temporary until foot extra is fixed
+    # cyberdream.url = "github:scottmckendry/cyberdream.nvim";
+    cyberdream.url = "github:sqrtxander/cyberdream.nvim";
   };
 
   outputs = inputs:
