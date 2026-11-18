@@ -3,12 +3,21 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.niri = moduleWithSystem ({self', ...}: {
+  flake.nixosModules.niri = moduleWithSystem ({
+    self',
+    pkgs,
+    ...
+  }: {
     programs.niri = {
       enable = true;
       package = self'.packages.niri;
     };
     systemd.user.services.niri.enableDefaultPath = false;
+    environment.systemPackages = with pkgs; [
+      mako
+      libnotify
+      xwayland-satellite
+    ];
   });
   perSystem = {
     pkgs,
