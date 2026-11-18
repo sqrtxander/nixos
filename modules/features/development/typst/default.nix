@@ -1,12 +1,8 @@
 {moduleWithSystem, ...}: {
-  flake.nixosModules.development-typst = moduleWithSystem ({self', ...}: {
-    environment.systemPackages = with self'.packages; [
+  flake.nixosModules.development-typst = moduleWithSystem ({unstablePkgs, ...}: {
+    environment.systemPackages = with unstablePkgs; [
       typst
       tinymist
     ];
   });
-  perSystem = {unstablePkgs, ...}: {
-    packages.typst = unstablePkgs.typst;
-    packages.tinymist = unstablePkgs.tinymist;
-  };
 }
