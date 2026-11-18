@@ -5,7 +5,6 @@
       development-go
       development-nix
       development-perl
-      # development-python
       development-rust
       development-typst
       development-web
@@ -17,6 +16,8 @@
       curl
       jq
       tree-sitter
+      htop
+      tree
     ];
   in {
     imports = modules;
