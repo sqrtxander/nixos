@@ -2,15 +2,15 @@
   "nodes": {
     "cyberdream": {
       "locked": {
-        "lastModified": 1794889203,
-        "narHash": "sha256-9kbBU9nJ/LUTx4PZJpIwxVTFqhoqpYz/1PxRLM3QPWM=",
-        "owner": "sqrtxander",
+        "lastModified": 1794896888,
+        "narHash": "sha256-GxZgmaK9njaP9/1MKI6rHzW0KvqEKyROHiFtGwPvpCw=",
+        "owner": "scottmckendry",
         "repo": "cyberdream.nvim",
-        "rev": "010ff2f470ede9876b6f0ef4c51a1189a03611c9",
+        "rev": "eafadf5712e447bb813f8f7eab8012d1391fdba2",
         "type": "github"
       },
       "original": {
-        "owner": "sqrtxander",
+        "owner": "scottmckendry",
         "repo": "cyberdream.nvim",
         "type": "github"
       }

@@ -11,9 +11,7 @@
 
     wallpaper-generator.url = "github:sqrtxander/wallpaper_generator";
 
-    # temporary until foot extra is fixed
-    # cyberdream.url = "github:scottmckendry/cyberdream.nvim";
-    cyberdream.url = "github:sqrtxander/cyberdream.nvim";
+    cyberdream.url = "github:scottmckendry/cyberdream.nvim";
   };
 
   outputs = inputs:
