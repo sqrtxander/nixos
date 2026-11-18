@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.features = {pkgs, ...}: let
+  flake.nixosModules.features = {...}: let
     modules = with self.nixosModules; [
       development
       fonts
@@ -8,6 +8,7 @@
       librewolf
       niri
       noctalia
+      tmux
       zsh
     ];
   in {
