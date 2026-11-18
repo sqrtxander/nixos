@@ -44,6 +44,8 @@
           noctaliaExe
         ];
 
+        hotkey-overlay.skip-at-startup = _: {};
+
         input = {
           keyboard = {
             xkb.options = "compose:ralt";
@@ -55,6 +57,7 @@
           };
           warp-mouse-to-focus = _: {};
         };
+
         layout = {
           gaps = 5;
           focus-ring = {
@@ -63,14 +66,16 @@
             inactive-color = "#7b8496";
           };
         };
+
         gestures.hot-corners.off = _: {};
-        screenshot-path = "~/pictures/screenshots/%Y-%m-%d-%H-%M-%S.png";
+
         window-rules = [
           {
             geometry-corner-radius = 5;
             clip-to-geometry = true;
           }
         ];
+
         binds = {
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
