@@ -97,6 +97,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1794756927,
+        "narHash": "sha256-IfuPcOpwC+bYvBdtUhA9hHhY7xV7k9T5LeOTZFiJB4o=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b349185bb79c7cf7ad8ea8c097931730bf473c71",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1793826729,
         "narHash": "sha256-D5H7H+qMoTGI/jJtxKP4u7BdjkFnUyhOovTrf3pTOr0=",
         "owner": "NixOS",
@@ -118,12 +134,31 @@
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "wallpaper-generator": "wallpaper-generator",
         "wrappers": "wrappers"
+      }
+    },
+    "wallpaper-generator": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1794958149,
+        "narHash": "sha256-Ff8kjeaWUqYaPBW7caNCV0X0L6P5HybQd9MOQ2/9+Nw=",
+        "owner": "sqrtxander",
+        "repo": "wallpaper_generator",
+        "rev": "e90270468b46de28fd48d9549d57a80ea6f0f453",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sqrtxander",
+        "repo": "wallpaper_generator",
+        "type": "github"
       }
     },
     "wrappers": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1794787945,

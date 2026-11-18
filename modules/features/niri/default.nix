@@ -3,11 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.niri = moduleWithSystem ({
-    self',
-    pkgs,
-    ...
-  }: {
+  flake.nixosModules.niri = moduleWithSystem ({self', ...}: {
     programs.niri = {
       enable = true;
       package = self'.packages.niri;
@@ -20,14 +16,23 @@
     self',
     ...
   }: let
-    noctalia = lib.getExe self'.packages.noctalia;
+    noctaliaExe = lib.getExe self'.packages.noctalia;
+    wallpaperScript = pkgs.writeShellApplication {
+      name = "wallpaper-switch";
+      runtimeInputs = [
+        inputs.wallpaper-generator.packages.${pkgs.stdenv.hostPlatform.system}.default
+        pkgs.jq
+        self'.packages.noctalia
+      ];
+      text = builtins.readFile ./wallpaper-switch.sh;
+    };
     niri-wrapped = inputs.wrappers.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
         prefer-no-csd = _: {};
 
         spawn-at-startup = [
-          noctalia
+          noctaliaExe
         ];
 
         input = {
@@ -50,9 +55,10 @@
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
           "Mod+Q".close-window = _: {};
-          "Mod+R".spawn-sh = "${noctalia} msg panel-toggle launcher";
+          "Mod+R".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
           "Mod+O".toggle-overview = _: {};
-          "Mod+X".spawn-sh = "${noctalia} msg session lock";
+          "Mod+X".spawn-sh = "${noctaliaExe} msg session lock";
+          "Mod+W".spawn-sh = "${lib.getExe wallpaperScript} >> /tmp/wallpaper-generator.log";
 
           "Mod+H".focus-column-left = _: {};
           "Mod+J".focus-window-down = _: {};
@@ -108,17 +114,17 @@
           "Mod+Shift+F".fullscreen-window = _: {};
           "Mod+C".center-column = _: {};
 
-          "Print".spawn-sh = "${noctalia} msg screenshot-region";
-          "Ctrl+Print".spawn-sh = "${noctalia} msg screenshot-fullscreen";
-          "Alt+Print".spawn-sh = "${noctalia} msg screenshot-window";
+          "Print".spawn-sh = "${noctaliaExe} msg screenshot-region";
+          "Ctrl+Print".spawn-sh = "${noctaliaExe} msg screenshot-fullscreen";
+          "Alt+Print".spawn-sh = "${noctaliaExe} msg screenshot-window";
 
-          "XF86AudioRaiseVolume".spawn-sh = "${noctalia} msg volume-up 0.05";
-          "XF86AudioLowerVolume".spawn-sh = "${noctalia} msg volume-down 0.05";
-          "XF86AudioMute".spawn-sh = "${noctalia} msg volume-mute";
-          "XF86AudioMicMute".spawn-sh = "${noctalia} msg mic-mute";
+          "XF86AudioRaiseVolume".spawn-sh = "${noctaliaExe} msg volume-up 0.05";
+          "XF86AudioLowerVolume".spawn-sh = "${noctaliaExe} msg volume-down 0.05";
+          "XF86AudioMute".spawn-sh = "${noctaliaExe} msg volume-mute";
+          "XF86AudioMicMute".spawn-sh = "${noctaliaExe} msg mic-mute";
 
-          "XF86MonBrightnessUp".spawn-sh = "${noctalia} msg brightness-up 0.05";
-          "XF86MonBrightnessDown".spawn-sh = "${noctalia} msg brightness-down 0.05";
+          "XF86MonBrightnessUp".spawn-sh = "${noctaliaExe} msg brightness-up 0.05";
+          "XF86MonBrightnessDown".spawn-sh = "${noctaliaExe} msg brightness-down 0.05";
         };
       };
     };
