@@ -11,6 +11,7 @@
     imports = with self.nixosModules; [
       core
       networking
+      audio
       features
     ];
 
