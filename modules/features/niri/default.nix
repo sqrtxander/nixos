@@ -48,9 +48,20 @@
         };
         layout = {
           gaps = 5;
+          focus-ring = {
+            width = 2;
+            active-color = "#5ef1ff";
+            inactive-color = "#7b8496";
+          };
         };
         gestures.hot-corners.off = _: {};
         screenshot-path = "~/pictures/screenshots/%Y-%m-%d-%H-%M-%S.png";
+        window-rules = [
+          {
+            geometry-corner-radius = 5;
+            clip-to-geometry = true;
+          }
+        ];
         binds = {
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
