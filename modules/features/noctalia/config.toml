@@ -69,7 +69,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_weather = true
 
 [shell]
-corner_radius_scale = 0.5000000074505806
+corner_radius_scale = 0.5
 
     [shell.launcher]
     search_position = "top"
@@ -83,10 +83,10 @@ corner_radius_scale = 0.5000000074505806
     filename_pattern = "%Y-%m-%d-%H-%M-%S.png"
 
 [theme]
-builtin = "Nord"
-community_palette = "ADW-green"
-custom_palette = "custom"
+mode = "dark"
+shell_mode = "follow"
 source = "custom"
+theme.custom_palette = "custom"
 
     [theme.templates]
     enable_builtin_templates = false
