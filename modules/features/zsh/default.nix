@@ -33,23 +33,32 @@
   perSystem = {
     pkgs,
     lib,
+    self',
     ...
   }: {
-    packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
-      inherit pkgs;
-      runtimePkgs = with pkgs; [zoxide];
-      zshAliases = {
-        ls = "ls --color";
-        ll = "ls -alF";
-        aac = "NVIM_APPNAME=\"aac.nvim\" ${lib.getExe pkgs.neovim}";
+    packages = {
+      zsh = inputs.wrappers.wrappers.zsh.wrap {
+        inherit pkgs;
+        runtimePkgs = with pkgs; [zoxide fzf];
+        zshAliases = {
+          ls = "ls --color";
+          ll = "ls -alF";
+          aac = "NVIM_APPNAME=\"aac.nvim\" ${lib.getExe pkgs.neovim}";
+        };
+        zshrc.content = ''
+          autoload -Uz compinit && compinit
+          bindkey -e
+          export MANPAGER="${lib.getExe pkgs.neovim} -c 'Man!' -o -"
+          export EDITOR="${lib.getExe pkgs.neovim}"
+          eval "$(${lib.getExe self'.packages.ohMyPosh} init zsh)"
+          source <(${lib.getExe pkgs.fzf} --zsh)
+          bindkey '^Y' autosuggest-accept
+        '';
       };
-      zshrc.content = ''
-        autoload -Uz compinit && compinit
-        bindkey -e
-        export MANPAGER="${lib.getExe pkgs.neovim} -c 'Man!' -o -"
-        export EDITOR="${lib.getExe pkgs.neovim}"
-        bindkey '^Y' autosuggest-accept
-      '';
+      ohMyPosh = inputs.wrappers.wrappers.oh-my-posh.wrap {
+        inherit pkgs;
+        configFile = ./config.toml;
+      };
     };
   };
 }
