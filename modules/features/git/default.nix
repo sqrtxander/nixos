@@ -3,11 +3,7 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.git = moduleWithSystem ({
-    self',
-    pkgs,
-    ...
-  }: {
+  flake.nixosModules.git = moduleWithSystem ({self', ...}: {
     programs.git = {
       enable = true;
       package = self'.packages.git;

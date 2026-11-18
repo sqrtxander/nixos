@@ -5,6 +5,7 @@
       fonts
       foot
       git
+      images
       librewolf
       niri
       noctalia
