@@ -8,9 +8,12 @@
     pkgs,
     ...
   }: {
-    programs.niri = {
-      enable = true;
-      package = self'.packages.niri;
+    programs = {
+      niri = {
+        enable = true;
+        package = self'.packages.niri;
+      };
+      xwayland.enable = true;
     };
     systemd.user.services.niri.enableDefaultPath = false;
     environment.systemPackages = with pkgs; [
@@ -22,6 +25,7 @@
   });
   perSystem = {
     pkgs,
+    unfreePkgs,
     lib,
     self',
     ...
@@ -43,6 +47,7 @@
 
         spawn-at-startup = [
           noctaliaExe
+          "${lib.getExe unfreePkgs.insync} start"
         ];
 
         hotkey-overlay.skip-at-startup = _: {};

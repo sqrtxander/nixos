@@ -6,6 +6,7 @@
       foot
       git
       images
+      insync
       librewolf
       niri
       noctalia
