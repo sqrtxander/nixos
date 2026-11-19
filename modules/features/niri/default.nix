@@ -84,6 +84,15 @@
           }
         ];
 
+        switch-events = {
+          lid-close.spawn = [
+            noctaliaExe
+            "msg"
+            "session"
+            "lock-and-suspend"
+          ];
+        };
+
         binds = {
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
