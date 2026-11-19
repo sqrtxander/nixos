@@ -6,6 +6,7 @@
       imports
       locale
       services
+      printing
     ];
   in {
     imports = modules;
