@@ -17,6 +17,7 @@
       mako
       libnotify
       xwayland-satellite
+      bibata-cursors
     ];
   });
   perSystem = {
@@ -57,6 +58,8 @@
           };
           warp-mouse-to-focus = _: {};
         };
+
+        cursor.xcursor-theme = "Bibata-Modern-Classic";
 
         layout = {
           gaps = 5;
