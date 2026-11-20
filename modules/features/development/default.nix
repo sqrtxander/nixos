@@ -7,7 +7,6 @@
       development-perl
       development-rust
       development-typst
-      development-web
     ];
     systemPackages = with pkgs; [
       prek
