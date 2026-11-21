@@ -35,7 +35,24 @@
     lib,
     self',
     ...
-  }: {
+  }: let
+    aac = pkgs.writeShellApplication {
+      name = "aac";
+      runtimeInputs = with pkgs; [
+        (pkgs.python313.withPackages
+          (p:
+            with p; [
+              (p.toPythonModule pkgs.piper-tts)
+              onnxruntime
+              phonemizer
+              huggingface-hub
+              numpy
+            ]))
+        espeak
+      ];
+      text = "NVIM_APPNAME=\"aac.nvim\" ${lib.getExe pkgs.neovim}";
+    };
+  in {
     packages = {
       zsh = inputs.wrappers.wrappers.zsh.wrap {
         inherit pkgs;
@@ -43,7 +60,7 @@
         zshAliases = {
           ls = "ls --color";
           ll = "ls -alF";
-          aac = "NVIM_APPNAME=\"aac.nvim\" ${lib.getExe pkgs.neovim}";
+          aac = lib.getExe aac;
         };
         zshrc.content = ''
           autoload -Uz compinit && compinit
