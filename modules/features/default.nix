@@ -10,6 +10,7 @@
       librewolf
       niri
       noctalia
+      steam
       tmux
       zsh
     ];
