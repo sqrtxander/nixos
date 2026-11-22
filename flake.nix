@@ -12,6 +12,11 @@
     wallpaper-generator.url = "github:sqrtxander/wallpaper_generator";
 
     cyberdream.url = "github:scottmckendry/cyberdream.nvim";
+
+    helium = {
+      url = "github:AlvaroParker/helium-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

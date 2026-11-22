@@ -5,6 +5,7 @@
       fonts
       foot
       git
+      helium
       images
       insync
       librewolf
