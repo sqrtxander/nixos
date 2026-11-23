@@ -9,6 +9,8 @@
 
     wrappers.url = "github:nix-community/nix-wrapper-modules";
 
+    neovim.url = "github:sqrtxander/nvim";
+
     wallpaper-generator.url = "github:sqrtxander/wallpaper_generator";
 
     cyberdream.url = "github:scottmckendry/cyberdream.nvim";

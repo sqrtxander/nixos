@@ -9,14 +9,11 @@
     ...
   }: {
     imports = with self.nixosModules; [
-      core
-      networking
-      audio
-      features
-    ];
-
-    environment.systemPackages = with pkgs; [
-      neovim
+      apps
+      desktop
+      development
+      education
+      gaming
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
