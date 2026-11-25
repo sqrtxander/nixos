@@ -21,8 +21,10 @@
       ++ (with pkgs; [
         gimp
         imv
+        zathura
       ])
       ++ (with unfreePkgs; [
+        discord
         insync
       ]);
   });
