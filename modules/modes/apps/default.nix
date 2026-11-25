@@ -12,6 +12,7 @@
       fonts
       foot
       librewolf
+      tailscale
       zsh
     ];
     environment.systemPackages =
