@@ -4,7 +4,11 @@
       steam
     ];
     environment.systemPackages = with pkgs; [
-      prismlauncher
+      (pkgs.prismlauncher.override {
+        additionalLibs = with pkgs; [
+          glfw3-minecraft
+        ];
+      })
     ];
   };
 }
