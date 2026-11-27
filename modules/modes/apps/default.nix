@@ -27,6 +27,7 @@
       ++ (with unfreePkgs; [
         discord
         insync
+        slack
       ]);
   });
 }
