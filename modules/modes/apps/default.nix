@@ -20,8 +20,10 @@
         inputs'.helium.packages.default
       ]
       ++ (with pkgs; [
+        chromium
         gimp
         imv
+        libreoffice
         zathura
       ])
       ++ (with unfreePkgs; [
