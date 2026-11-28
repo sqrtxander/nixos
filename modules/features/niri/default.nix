@@ -93,6 +93,12 @@
           ];
         };
 
+        outputs = {
+          "Virtual-1" = {
+            mode = "1920x1080@60";
+          };
+        };
+
         binds = {
           "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
           "Mod+B".spawn-sh = lib.getExe pkgs.librewolf;
